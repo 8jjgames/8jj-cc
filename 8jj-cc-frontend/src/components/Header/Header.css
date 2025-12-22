@@ -1,0 +1,77 @@
+/* =========================
+   HEADER (FIXED & CENTERED)
+   ========================= */
+
+:root {
+  --header-height: 76px;
+  --body-max-width: 560px;
+}
+
+/* Fixed full-width header shell */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background: transparent;
+}
+
+/* Inner centered container */
+.header-inner {
+  position: relative;
+  max-width: var(--body-max-width);
+  width: 100%;
+  height: var(--header-height);
+
+  margin: 0 auto; /* 🔑 centers header content */
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 12px;
+
+  background: linear-gradient(0deg, #2d2d2dfc 0%, #000000fc 100%);
+  backdrop-filter: saturate(120%) blur(8px);
+  box-shadow: 0 6px 20px rgba(16, 56, 94, 0.12);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+/* Center logo absolutely inside inner container */
+.logo-left {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.brand-logo {
+  height: 67px;
+  width: auto;
+  display: block;
+}
+
+/* Right-side actions */
+.actions-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.small-icon {
+  height: 35px;
+  width: auto;
+  display: block;
+}
+
+/* Button reset */
+.icon-button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}

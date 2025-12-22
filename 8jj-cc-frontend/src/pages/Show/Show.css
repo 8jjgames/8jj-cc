@@ -1,0 +1,67 @@
+.show-page {
+  padding: 12px;
+}
+
+.show-header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.show-title {
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  color: #eaeaea;
+}
+
+.show-section {
+  margin-top: 16px;
+}
+
+.show-section-title {
+  font-size: 12px;
+  margin-bottom: 8px;
+  color: #aaa;
+}
+
+/* HOT CARDS */
+.show-hot-list {
+  display: flex;
+  gap: 10px;
+}
+
+.show-card {
+  flex: 1;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.show-card-img {
+  width: 100%;
+  display: block;
+}
+
+/* OTHERS GRID */
+.show-others-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.show-quick {
+  background: linear-gradient(180deg, #2a2a2a, #141414);
+  border-radius: 14px;
+  padding: 10px 6px;
+  color: #fff;
+  border: none;
+}
+
+.show-quick-img {
+  width: 26px;
+  height: 26px;
+}
+
+.show-quick-label {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+}

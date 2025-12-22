@@ -1,0 +1,41 @@
+/* =========================
+   HERO VIDEO SECTION
+   ========================= */
+
+.top-video {
+  max-width: var(--body-max-width, 560px);
+  width: 100%;
+  margin: 0 auto;
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* video itself */
+.hero-video {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* smooth fade into page background */
+.top-video::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 35%;
+  pointer-events: none;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.15) 35%,
+    #161616 100%
+  );
+}

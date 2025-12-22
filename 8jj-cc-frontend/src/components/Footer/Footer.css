@@ -1,100 +1,64 @@
-/* =========================
-   FOOTER NAVBAR – fixed layout, even tabs
-   ========================= */
-
 .app-footer {
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  background: transparent;
   z-index: 1000;
+
+  background: transparent;
   pointer-events: none;
 }
 
 .dock {
   max-width: 560px;
   margin: 0 auto;
-  margin: 0 auto;
-  height: 0.9rem;
-  padding: 0 0.30rem;
+
+  height: 68px;               /* ✅ FIXED HEIGHT (px, not rem) */
+  padding: 0 12px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.3rem;
+  gap: 12px;
 
-  background: #4a4839;
-  border-radius: 0.42rem 0.42rem 0 0;
-  box-shadow: 0 -6px 20px rgba(0,0,0,.75);
+  background: linear-gradient(
+    180deg,
+    rgba(40, 40, 40, 0.98),
+    rgba(20, 20, 20, 0.98)
+  );
+
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.8);
+
   pointer-events: auto;
 }
 
-/* each tab = equal width */
+/* Each tab */
 .tab {
-  flex: 1 1 0;
-  display: inline-flex;
+  flex: 1;
+  display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 0.14rem;
-  padding: 0.14rem 0.06rem;
+  justify-content: center;
+  gap: 6px;
+
   text-decoration: none;
-  border-radius: 999px;
-  border: none;
-  white-space: nowrap;
-}
-
-/* icons */
-.tab .icon {
-  width: 0.64rem;
-  height: 0.64rem;
-  object-fit: contain;
-  display: block;
-}
-
-/* labels */
-.tab .label {
-  font-size: 0.35em;
-  font-weight: 650;
-  line-height: 1;
   color: #e5e5e5;
+  font-weight: 600;
+  font-size: 14px;
 }
 
-/* active tab */
-.tab.is-active .label {
+/* Icons */
+.tab img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+/* Active route */
+.tab.active {
   color: #ff9b1f;
 }
 
-/* icon coloring */
-.tab:not(.is-active) .icon {
-  filter: grayscale(100%) brightness(1.4);
-}
-
-.tab.is-active .icon {
-  filter: none;
-}
-
-/* small screens */
-@media (max-width: 380px) {
-  .dock {
-    height: 1rem;
-    padding: 0 0.22rem;
-    gap: 0.24rem;
-  }
-
-  .tab {
-    gap: 0.10rem;
-  }
-
-  .tab .icon {
-    width: 0.40rem;
-    height: 0.40rem;
-  }
-
-  .tab .label {
-    font-size: 0.25rem;
-  }
+.tab.active img {
+  filter: drop-shadow(0 0 6px rgba(255, 155, 31, 0.8));
 }

@@ -1,11 +1,18 @@
 import { useState } from "react";
 import "./NewsTabs.css";
+import NewsList from "./NewsList";
+import { newsData } from "../../data/newsData";
 
 export default function NewsTabs() {
   const [active, setActive] = useState("news");
 
+  const filteredData = newsData.filter(
+    item => item.type === active
+  );
+
   return (
     <section id="News">
+      {/* Tabs */}
       <div className="news-tabs">
         <button
           className="news-tab"
@@ -14,6 +21,7 @@ export default function NewsTabs() {
         >
           News
         </button>
+
         <button
           className="news-tab"
           aria-selected={active === "events"}
@@ -21,6 +29,7 @@ export default function NewsTabs() {
         >
           Events
         </button>
+
         <button
           className="news-tab"
           aria-selected={active === "offers"}
@@ -30,9 +39,8 @@ export default function NewsTabs() {
         </button>
       </div>
 
-      {active === "news" && <div>NEWS LIST</div>}
-      {active === "events" && <div>EVENT LIST</div>}
-      {active === "offers" && <div>OFFER LIST</div>}
+      {/* Content */}
+      <NewsList items={filteredData} />
     </section>
   );
 }

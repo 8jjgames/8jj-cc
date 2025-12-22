@@ -1,26 +1,24 @@
-import { NavLink } from "react-router-dom";
 import "./Footer.css";
+import { NavLink } from "react-router-dom";
 
 export default function Footer() {
   return (
     <footer className="app-footer">
       <nav className="dock">
-
-        <NavLink to="/" className={({ isActive }) => `tab ${isActive ? "is-active" : ""}`}>
-          <img className="icon" src="/images/Home.png" alt="Home" />
-          <span className="label">Home</span>
+        <NavLink to="/" className="tab">
+          <img src="/images/Home.png" alt="Home" />
+          <span>Home</span>
         </NavLink>
 
-        <NavLink to="/event" className={({ isActive }) => `tab ${isActive ? "is-active" : ""}`}>
-          <img className="icon" src="/images/Event.png" alt="Event" />
-          <span className="label">Event</span>
+        <NavLink to="/event" className="tab">
+          <img src="/images/Event.png" alt="Event" />
+          <span>Event</span>
         </NavLink>
 
-        <NavLink to="/show" className={({ isActive }) => `tab ${isActive ? "is-active" : ""}`}>
-          <img className="icon" src="/images/Show.png" alt="Show" />
-          <span className="label">Show</span>
+        <NavLink to="/show" className="tab">
+          <img src="/images/Show.png" alt="Show" />
+          <span>Show</span>
         </NavLink>
-
       </nav>
     </footer>
   );

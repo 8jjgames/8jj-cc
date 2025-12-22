@@ -1,0 +1,39 @@
+.event-card-list {
+  padding: 12px;
+}
+
+.event-card {
+  position: relative;
+  display: block;
+  margin-bottom: 16px;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.event-card-img {
+  width: 100%;
+  display: block;
+}
+
+.event-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 40%,
+    rgba(0, 0, 0, 0.85)
+  );
+}
+
+.event-card-text {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  color: #fff;
+}
+
+.event-card-name {
+  font-size: 18px;
+  font-weight: 700;
+}

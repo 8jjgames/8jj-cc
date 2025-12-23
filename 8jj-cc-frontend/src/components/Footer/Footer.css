@@ -10,10 +10,11 @@
 }
 
 .dock {
-  max-width: 560px;
+  max-width: var(--body-max-width);
   margin: 0 auto;
 
-  height: 68px;               /* ✅ FIXED HEIGHT (px, not rem) */
+  height: 68px;
+  /* ✅ FIXED HEIGHT (px, not rem) */
   padding: 0 12px;
 
   display: flex;
@@ -21,11 +22,9 @@
   justify-content: space-between;
   gap: 12px;
 
-  background: linear-gradient(
-    180deg,
-    rgba(40, 40, 40, 0.98),
-    rgba(20, 20, 20, 0.98)
-  );
+  background: linear-gradient(180deg,
+      rgba(40, 40, 40, 0.98),
+      rgba(20, 20, 20, 0.98));
 
   border-radius: 20px 20px 0 0;
   box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.8);

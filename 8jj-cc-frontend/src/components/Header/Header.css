@@ -1,77 +1,244 @@
 /* =========================
-   HEADER (FIXED & CENTERED)
+   HEADER COMPONENT
+   Premium Design with Smooth Gradient Transitions
    ========================= */
 
-:root {
-  --header-height: 76px;
-  --body-max-width: 560px;
-}
-
-/* Fixed full-width header shell */
+/* =========================
+   HEADER SHELL
+   ========================= */
 .site-header {
+  /* Positioning */
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
   z-index: 9999;
+  
+  /* Transparent background (gradient is on .header-inner) */
   background: transparent;
+  
+  /* Smooth transitions - framework spec: 0.3s cubic-bezier */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Inner centered container */
+/* =========================
+   HEADER INNER CONTAINER
+   ========================= */
 .header-inner {
+  /* Centering & Max Width */
   position: relative;
   max-width: var(--body-max-width);
   width: 100%;
   height: var(--header-height);
-
-  margin: 0 auto; /* 🔑 centers header content */
-
+  
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+  
+  /* Flexbox Layout */
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  padding: 0 12px;
-
-  background: linear-gradient(0deg, #2d2d2dfc 0%, #000000fc 100%);
-  backdrop-filter: saturate(120%) blur(8px);
-  box-shadow: 0 6px 20px rgba(16, 56, 94, 0.12);
-  border-bottom: 1px solid rgba(255,255,255,.06);
+  
+  /* DEFAULT STATE: Vibrant gradient (matches app-shell top) */
+  background: linear-gradient(
+    175deg, 
+    #2a2d3e 0%, 
+    #252836 15%, 
+    #1f2332 30%, 
+    #1a1e2e 50%, 
+    #16192a 70%, 
+    #433222 93%, 
+    #693e0c 121%
+  );
+  
+  /* Smooth transition for all properties */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Center logo absolutely inside inner container */
-.logo-left {
+/* SCROLLED STATE: Compressed height + Darker gradient + Backdrop blur */
+.site-header--scrolled .header-inner {
+  height: var(--header-height-scrolled);
+  
+  /* Darker, more compact gradient */
+  background: linear-gradient(
+    162deg, 
+    #423323 -7%, 
+    #252836 15%, 
+    #1f2332 30%, 
+    #1a1e2e 50%, 
+    #16192a 70%, 
+    #3b2712 85%, 
+    #6a3b05 100%
+  );
+  
+  /* Elevated state effects */
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  box-shadow: var(--shadow-sm);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+/* =========================
+   LOGO (CENTER)
+   ========================= */
+.header-logo {
+  /* Absolute centering */
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 12%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  
   display: flex;
   align-items: center;
-  height: 100%;
+  justify-content: center;
+  
+  /* Smooth transition for logo position */
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Remove default link styling */
+  text-decoration: none;
+  outline-offset: 4px;
 }
 
-.brand-logo {
-  height: 67px;
+.header-logo:focus-visible {
+  outline: 2px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+.header-logo__img {
+  height: 56px;
   width: auto;
   display: block;
+  
+  /* Smooth transition */
+  transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Right-side actions */
-.actions-right {
+/* Smaller logo when scrolled */
+.site-header--scrolled .header-logo__img {
+  height: 44px;
+}
+
+/* =========================
+   RIGHT ACTIONS
+   ========================= */
+.header-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-sm);
   margin-left: auto;
+  
+  /* Ensure actions stay on top of centered logo */
+  position: relative;
+  z-index: 1;
 }
 
-.small-icon {
-  height: 35px;
-  width: auto;
-  display: block;
-}
-
-/* Button reset */
-.icon-button {
-  border: none;
-  background: transparent;
-  padding: 0;
+/* Action Link & Button Shared Styles */
+.header-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  width: 40px;
+  height: 40px;
+  
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border-subtle);
+  
   cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Remove default button/link styles */
+  text-decoration: none;
+  outline-offset: 4px;
+  padding: 0;
+}
+
+/* Hover State */
+.header-action:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--color-border-medium);
+  transform: translateY(-1px);
+}
+
+/* Active State */
+.header-action:active {
+  transform: translateY(0);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Focus State */
+.header-action:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Icon inside actions */
+.header-action__icon {
+  height: 22px;
+  width: 22px;
+  display: block;
+  object-fit: contain;
+  
+  /* Prevent icon from being interactive */
+  pointer-events: none;
+}
+
+/* =========================
+   RESPONSIVE ADJUSTMENTS
+   ========================= */
+
+/* Tablets and up */
+@media (min-width: 768px) {
+  .header-inner {
+    padding: 0 32px;
+  }
+  
+  .header-actions {
+    gap: var(--space-md);
+  }
+  
+  .header-action {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .header-action__icon {
+    height: 24px;
+    width: 24px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .header-inner {
+    padding: 0 40px;
+  }
+}
+
+/* =========================
+   ACCESSIBILITY
+   ========================= */
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .header-inner,
+  .header-logo,
+  .header-logo__img,
+  .header-action {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .site-header--scrolled .header-inner {
+    border-bottom-width: 2px;
+  }
+  
+  .header-action {
+    border-width: 2px;
+  }
 }

@@ -1,32 +1,77 @@
-import "./Header.css";
+import { useState, useEffect } from 'react';
+import './Header.css';
 
 export default function Header() {
-  return (
-    <header className="site-header">
-      <div className="header-inner">
+  const [isScrolled, setIsScrolled] = useState(false);
 
-        <a className="brand logo-left" href="/">
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollThreshold = 20;
+      setIsScrolled(window.scrollY > scrollThreshold);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Optional: Handle share button click
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: '8JJ',
+          text: 'Check out 8JJ!',
+          url: window.location.href,
+        });
+      } catch (err) {
+        console.log('Share cancelled');
+      }
+    } else {
+      // Fallback: Copy to clipboard
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
+    }
+  };
+
+  return (
+    <header className={`site-header ${isScrolled ? 'site-header--scrolled' : ''}`}>
+      <div className="header-inner">
+        
+        {/* Centered Logo */}
+        <a className="header-logo" href="/" aria-label="8JJ Home">
           <img
-            className="brand-logo"
+            className="header-logo__img"
             src="/images/8JJ LOGO.png"
             alt="8JJ Logo"
+            loading="eager" // Prioritize logo loading
           />
         </a>
 
-        <div className="actions-right">
-          <a className="brand" href="#">
+        {/* Right Action Buttons */}
+        <div className="header-actions">
+          <a 
+            className="header-action" 
+            href="#download" // Or actual app store link
+            aria-label="Download App"
+          >
             <img
-              className="small-icon"
+              className="header-action__icon"
               src="/images/Download.png"
-              alt="Download"
+              alt=""
+              loading="lazy"
             />
           </a>
 
-          <button className="brand icon-button">
+          <button 
+            className="header-action"
+            onClick={handleShare}
+            aria-label="Share"
+          >
             <img
-              className="small-icon"
+              className="header-action__icon"
               src="/images/Share.png"
-              alt="Share"
+              alt=""
+              loading="lazy"
             />
           </button>
         </div>

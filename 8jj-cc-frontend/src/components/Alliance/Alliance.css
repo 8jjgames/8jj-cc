@@ -31,12 +31,10 @@
   position: absolute;
   inset: 0;
 
-  background: linear-gradient(
-    to bottom,
-    #1b1b1a 0%,
-    #161616e6 55%,
-    #161616 100%
-  );
+  background: linear-gradient(to bottom,
+      #1b1b1a 0%,
+      #161616e6 55%,
+      #161616 100%);
 
   z-index: 0;
 }
@@ -48,7 +46,55 @@
   z-index: 1;
 }
 
-/* header pill */
+
+.alliance-header-container {
+  background: linear-gradient(360deg, #262626 -19.48%, #505050 93.51%);
+  height: min(38.64px);
+  border-radius: min(1.067vw, 5.12px);
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  font-size: min(3.733vw, 17.92px);
+  font-weight: 600
+}
+
+.alliance-header-container:after {
+  content: " ";
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(16deg, #ff9900 -7.09%, rgba(102, 102, 102, 0) 20.81%);
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: min(1.067vw, 5.12px)
+}
+
+.alliance-header-container .alliance-head {
+  display: flex;
+  align-items: center;
+  padding-left: min(4vw, 19.2px);
+  background: linear-gradient(360deg, #262626 -19.48%, #505050 93.51%);
+  height: min(37.36px);
+  border-radius: min(1.067vw, 5.12px);
+  position: absolute;
+  left: min(.267vw, 1.28px);
+  width: inherit;
+  z-index: 1;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .08),
+    0 4px 8px rgba(0, 0, 0, .45);
+  gap: 10px;
+  padding: 8px 14px;
+}
+
+
+/*
+
+.alliance-header-container{
+
+}
+
+
 .alliance-head {
   display: flex;
   align-items: center;
@@ -62,6 +108,8 @@
     inset 0 1px 0 rgba(255,255,255,.08),
     0 4px 8px rgba(0,0,0,.45);
 }
+
+
 .alliance-head::after{
   content: " ";
     width: 100%;
@@ -72,6 +120,10 @@
     top: 0;
     border-radius: 10px;
 }
+
+*/
+
+
 
 /* icon circle */
 .alliance-icon {
@@ -130,8 +182,8 @@
   overflow: hidden;
 
   box-shadow:
-    0 4px 12px rgba(0,0,0,.85),
-    0 0 0 1px rgba(15,23,42,.7);
+    0 4px 12px rgba(0, 0, 0, .85),
+    0 0 0 1px rgba(15, 23, 42, .7);
 
   transition: transform .15s ease, box-shadow .15s ease;
 }
@@ -147,8 +199,8 @@
 .tile:hover {
   transform: translateY(-2px);
   box-shadow:
-    0 7px 18px rgba(0,0,0,.95),
-    0 0 0 1px rgba(248,250,252,.3);
+    0 7px 18px rgba(0, 0, 0, .95),
+    0 0 0 1px rgba(248, 250, 252, .3);
 }
 
 /* label */

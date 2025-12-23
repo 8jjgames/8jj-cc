@@ -2,9 +2,9 @@ import Alliance from "../../components/Alliance/Alliance";
 import NewsTabs from "../../components/NewsTabs/NewsTabs";
 import HeroVideo from "../../components/HeroVideo/HeroVideo";
 import Slider from "../../components/Slider/Slider";
-import Slide1 from "../../../public/images/slide1.jpg";
-import Slide2 from "../../../public/images/slide2.jpg";
-import Slide3 from "../../../public/images/slide3.jpg";
+import Slide1 from "../../assets/slide1.jpg";
+import Slide2 from "../../assets/slide2.jpg";
+import Slide3 from "../../assets/slide3.jpg";
 
 export default function Home() {
 

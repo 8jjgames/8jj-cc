@@ -14,24 +14,7 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Optional: Handle share button click
-  const handleShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: '8JJ',
-          text: 'Check out 8JJ!',
-          url: window.location.href,
-        });
-      } catch (err) {
-        console.log('Share cancelled');
-      }
-    } else {
-      // Fallback: Copy to clipboard
-      navigator.clipboard.writeText(window.location.href);
-      alert('Link copied to clipboard!');
-    }
-  };
+  
 
   return (
     <header className={`site-header ${isScrolled ? 'site-header--scrolled' : ''}`}>
@@ -63,9 +46,7 @@ export default function Header() {
           </a>
 
           <button 
-            className="header-action"
-            onClick={handleShare}
-            aria-label="Share"
+            className="header-action" aria-label="Share"
           >
             <img
               className="header-action__icon"

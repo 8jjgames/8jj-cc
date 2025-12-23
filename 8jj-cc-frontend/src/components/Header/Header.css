@@ -13,10 +13,10 @@
   left: 0;
   right: 0;
   z-index: 9999;
-  
+
   /* Transparent background (gradient is on .header-inner) */
   background: transparent;
-  
+
   /* Smooth transitions - framework spec: 0.3s cubic-bezier */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -30,27 +30,25 @@
   max-width: var(--body-max-width);
   width: 100%;
   height: var(--header-height);
-  
+
   margin: 0 auto;
   padding: 0 var(--content-padding);
-  
+
   /* Flexbox Layout */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
+
   /* DEFAULT STATE: Vibrant gradient (matches app-shell top) */
-  background: linear-gradient(
-    175deg, 
-    #2a2d3e 0%, 
-    #252836 15%, 
-    #1f2332 30%, 
-    #1a1e2e 50%, 
-    #16192a 70%, 
-    #433222 93%, 
-    #693e0c 121%
-  );
-  
+  background: linear-gradient(175deg,
+      #2a2d3e 0%,
+      #252836 15%,
+      #1f2332 30%,
+      #1a1e2e 50%,
+      #16192a 70%,
+      #433222 93%,
+      #693e0c 121%);
+
   /* Smooth transition for all properties */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -58,19 +56,17 @@
 /* SCROLLED STATE: Compressed height + Darker gradient + Backdrop blur */
 .site-header--scrolled .header-inner {
   height: var(--header-height-scrolled);
-  
+
   /* Darker, more compact gradient */
-  background: linear-gradient(
-    162deg, 
-    #423323 -7%, 
-    #252836 15%, 
-    #1f2332 30%, 
-    #1a1e2e 50%, 
-    #16192a 70%, 
-    #3b2712 85%, 
-    #6a3b05 100%
-  );
-  
+  background: linear-gradient(162deg,
+      #423323 -7%,
+      #252836 15%,
+      #1f2332 30%,
+      #1a1e2e 50%,
+      #16192a 70%,
+      #3b2712 85%,
+      #6a3b05 100%);
+
   /* Elevated state effects */
   backdrop-filter: blur(10px) saturate(120%);
   -webkit-backdrop-filter: blur(10px) saturate(120%);
@@ -83,18 +79,19 @@
    ========================= */
 .header-logo {
   /* Absolute centering */
-  position: absolute;
+
+  /* position: absolute;
   left: 12%;
   top: 50%;
-  transform: translate(-50%, -50%);
-  
+  transform: translate(-50%, -50%); */
+
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   /* Smooth transition for logo position */
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   /* Remove default link styling */
   text-decoration: none;
   outline-offset: 4px;
@@ -109,7 +106,7 @@
   height: 56px;
   width: auto;
   display: block;
-  
+
   /* Smooth transition */
   transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -127,7 +124,7 @@
   align-items: center;
   gap: var(--space-sm);
   margin-left: auto;
-  
+
   /* Ensure actions stay on top of centered logo */
   position: relative;
   z-index: 1;
@@ -138,23 +135,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   width: 40px;
   height: 40px;
-  
+
   border-radius: var(--radius-md);
-  
-   /*  
+
+  /*  
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--color-border-subtle);
   */
 
   background: none;
   border: 0px solid var(--color-border-subtle);
-  
+
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   /* Remove default button/link styles */
   text-decoration: none;
   outline-offset: 4px;
@@ -186,7 +183,7 @@
   width: 22px;
   display: block;
   object-fit: contain;
-  
+
   /* Prevent icon from being interactive */
   pointer-events: none;
 }
@@ -200,16 +197,16 @@
   .header-inner {
     padding: 0 32px;
   }
-  
+
   .header-actions {
     gap: var(--space-md);
   }
-  
+
   .header-action {
     width: 44px;
     height: 44px;
   }
-  
+
   .header-action__icon {
     height: 24px;
     width: 24px;
@@ -229,6 +226,7 @@
 
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
+
   .site-header,
   .header-inner,
   .header-logo,
@@ -243,8 +241,178 @@
   .site-header--scrolled .header-inner {
     border-bottom-width: 2px;
   }
-  
+
   .header-action {
     border-width: 2px;
+  }
+}
+
+
+/* =========================
+   SHARE DROPDOWN
+   ========================= */
+
+/* Wrapper to position dropdown relative to button */
+.header-action-wrapper {
+  position: relative;
+}
+
+/* Dropdown Container */
+.social-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  z-index: 10000;
+
+  /* Hidden by default */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  pointer-events: none;
+
+  /* Smooth transition */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Open State */
+.social-dropdown.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Arrow/Triangle pointing up */
+.social-dropdown-arrow {
+  position: absolute;
+  top: -6px;
+  right: 16px;
+
+  width: 12px;
+  height: 12px;
+
+  background: linear-gradient(145deg,
+      #1a1e2e 0%,
+      #16192a 100%);
+
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  transform: rotate(45deg);
+  z-index: 1;
+}
+
+/* Dropdown Panel */
+.social-dropdown-panel {
+  position: relative;
+  width: 280px;
+
+  /* Premium dark background */
+  background: linear-gradient(145deg,
+      #1a1e2e 0%,
+      #16192a 50%,
+      #1f2332 100%);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+
+  /* Premium elevation */
+  box-shadow: var(--shadow-lg);
+
+  padding: var(--space-md);
+
+  /* Ensure panel is above arrow */
+  z-index: 2;
+}
+
+/* Social Grid */
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-sm);
+}
+
+/* Social Item */
+.social-item {
+  aspect-ratio: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  text-decoration: none;
+  outline-offset: 4px;
+
+  padding: 10px;
+
+  max-width: 55px;
+  margin: auto;
+}
+
+.social-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--color-border-medium);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.social-item:active {
+  transform: translateY(-2px);
+}
+
+/* Social Icon */
+.social-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* =========================
+   RESPONSIVE ADJUSTMENTS
+   ========================= */
+
+/* Tablets and up */
+@media (min-width: 768px) {
+  .social-dropdown-panel {
+    width: 320px;
+    padding: var(--space-lg);
+  }
+
+  .social-grid {
+    gap: var(--space-md);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .social-dropdown-panel:hover {
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* =========================
+   ACCESSIBILITY
+   ========================= */
+
+/* Focus styles */
+.social-item:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+
+  .social-dropdown,
+  .social-item {
+    transition: none;
   }
 }

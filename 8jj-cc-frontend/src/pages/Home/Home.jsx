@@ -3,9 +3,9 @@ import NewsTabs from "../../components/NewsTabs/NewsTabs";
 import HeroVideo from "../../components/HeroVideo/HeroVideo";
 import Slider from "../../components/Slider/Slider";
 
-import slide1 from "../../assets/slide1.jpg";
-import slide2 from "../../assets/slide2.jpg";
-import slide3 from "../../assets/slide3.jpg";
+import slide1 from "../../assets/Slide1.jpg";
+import slide2 from "../../assets/Slide2.jpg";
+import slide3 from "../../assets/Slide3.jpg";
 
 export default function Home() {
   const slides = [

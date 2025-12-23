@@ -1,4 +1,5 @@
-import "./Alliance.css";
+import { useState } from 'react';
+import './Alliance.css';
 
 const ALLIANCE_LIST = [
   {
@@ -46,47 +47,78 @@ const ALLIANCE_LIST = [
 ];
 
 export default function Alliance() {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   return (
-    <section id="ContactUs">
+    <section id="ContactUs" className="alliance-section">
       <div className="brands-wrap">
         <div
           className="alliance-card"
           style={{ backgroundImage: "url(/images/AllianceBg.jpg)" }}
         >
-          {/* Header */}
-
+          {/* Header with Pulse Animation */}
           <div className="alliance-header-container">
             <div className="alliance-head">
-              <span className="alliance-icon"></span>
-              <span className="alliance-title">ALLIANCE MEMBER</span>
+              <span className="alliance-icon">
+                <span className="alliance-icon-pulse"></span>
+              </span>
+              <span className="alliance-title">Alliance Members</span>
+              <span className="alliance-count">{ALLIANCE_LIST.length}</span>
             </div>
           </div>
 
-
-          {/* Grid */}
+          {/* Grid with Stagger Animation */}
           <ul className="alliance-grid">
-            {ALLIANCE_LIST.map((item) => (
-              <li className="alliance-item" key={item.name}>
+            {ALLIANCE_LIST.map((item, index) => (
+              <li 
+                className="alliance-item" 
+                key={item.name}
+                style={{ '--stagger-index': index }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
                 <a
                   href={item.secondaryLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="tile"
+                  className={`tile ${hoveredIndex === index ? 'tile-active' : ''}`}
                 >
-                  <img src={item.image} alt={item.name} />
+                  <img 
+                    src={item.image} 
+                    alt={item.name}
+                    loading="lazy"
+                  />
+                  <div className="tile-shimmer"></div>
+                  <div className="tile-glow"></div>
                 </a>
                 <span className="alliance-name">{item.name}</span>
               </li>
             ))}
 
-            {/* Empty slot (Coming Soon) */}
-            <li className="alliance-item">
+            {/* Coming Soon Slot with Breathing Animation */}
+            <li 
+              className="alliance-item alliance-item-empty"
+              style={{ '--stagger-index': ALLIANCE_LIST.length }}
+            >
               <div className="tile tile-empty">
                 <span className="tile-plus">+</span>
+                <span className="tile-empty-text">Coming Soon</span>
+                <div className="tile-empty-rings">
+                  <span className="ring ring-1"></span>
+                  <span className="ring ring-2"></span>
+                  <span className="ring ring-3"></span>
+                </div>
               </div>
               <span className="alliance-name">&nbsp;</span>
             </li>
           </ul>
+
+          {/* Floating Particles Background Effect */}
+          <div className="alliance-particles">
+            {[...Array(6)].map((_, i) => (
+              <span key={i} className="particle" style={{ '--particle-index': i }}></span>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -4,6 +4,8 @@ import './Header.css';
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [isMusicModalOpen, setIsMusicModalOpen] = useState(false);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,9 +26,16 @@ export default function Header() {
           !e.target.closest('.header-action-wrapper')) {
         setIsShareModalOpen(false);
       }
+      
+      // Check if click is outside the music modal
+      if (isMusicModalOpen && 
+          !e.target.closest('.music-modal') && 
+          !e.target.closest('.header-action-wrapper')) {
+        setIsMusicModalOpen(false);
+      }
     };
 
-    if (isShareModalOpen) {
+    if (isShareModalOpen || isMusicModalOpen) {
       // Small delay to prevent immediate closing on button click
       setTimeout(() => {
         document.addEventListener('click', handleClickOutside);
@@ -36,26 +45,27 @@ export default function Header() {
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, [isShareModalOpen]);
+  }, [isShareModalOpen, isMusicModalOpen]);
 
   // Close on Escape key
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === 'Escape' && isShareModalOpen) {
-        setIsShareModalOpen(false);
+      if (e.key === 'Escape') {
+        if (isShareModalOpen) setIsShareModalOpen(false);
+        if (isMusicModalOpen) setIsMusicModalOpen(false);
       }
     };
 
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
-  }, [isShareModalOpen]);
+  }, [isShareModalOpen, isMusicModalOpen]);
 
   const socialLinks = [
     { name: 'Facebook', url: 'https://www.facebook.com/8jjofficials', icon: '/images/facebook.png' },
     { name: 'Instagram', url: 'https://www.instagram.com/8jj_gamesofficial?igsh=MWEwamhsaXcwMWNwcw==', icon: '/images/instagram.png' },
-    { name: 'WhatsApp', url: 'https://chat.whatsapp.com/EP5RmVKop9rHPrmCxP5Krp?mode=wwc', icon: '/images/whatsapp.png' },
+    { name: 'WhatsApp', url: 'https://chat.whatsapp.com/EP5RmVKop9rHPrmCxP5Krp?mode=wwc', icon: '/images/WhatsApp.png' },
     { name: 'Telegram', url: 'https://t.me/Official8JJGames', icon: '/images/telegram1.png' },
-    { name: 'YouTube', url: 'https://youtube.com/@8jj_gamesofficial?si=eNSRKuTPdeZcCufS', icon: '/images/Youtube.png' },
+    { name: 'YouTube', url: 'https://youtube.com/@8jj_gamesofficial?si=eNSRKuTPdeZcCufS', icon: '/images/YouTube.png' },
     { name: 'TikTok', url: 'https://www.tiktok.com/@8jjofficials', icon: '/images/Tiktok.png' },
     { name: 'X', url: 'https://x.com/8JJ_Games?t=4GAWbf3qpFkbP4y8mrmWwQ&s=08', icon: '/images/x.png' },
     { name: 'Twitch', url: 'https://www.twitch.tv/8jj_gamesofficial', icon: '/images/twitch.png' }
@@ -77,6 +87,76 @@ export default function Header() {
 
         {/* Right Action Buttons */}
         <div className="header-actions">
+          {/* Music Control Button */}
+          <div className="header-action-wrapper">
+            <button 
+              className={`header-action ${isMusicPlaying ? 'header-action--active' : ''}`}
+              aria-label="Music Control"
+              onClick={() => setIsMusicModalOpen(!isMusicModalOpen)}
+            >
+              <img
+                className="header-action__icon"
+                src={isMusicPlaying ? "/images/MusicPlay.gif" : "/images/MusicPlay.gif"}
+                alt=""
+                loading="lazy"
+              />
+            </button>
+
+            {/* Music Modal */}
+            {isMusicModalOpen && (
+              <div className="music-modal">
+                <div className="music-modal__header">
+                  <h3 className="music-modal__title">Background Music</h3>
+                  <button 
+                    className="music-modal__close"
+                    onClick={() => setIsMusicModalOpen(false)}
+                    aria-label="Close"
+                  >
+                    ×
+                  </button>
+                </div>
+
+                {/* Music Toggle */}
+                <div className="music-control">
+                  <span className="music-control__label">
+                    {isMusicPlaying ? 'Music On' : 'Music Off'}
+                  </span>
+                  <label className="music-toggle">
+                    <input 
+                      type="checkbox" 
+                      checked={isMusicPlaying}
+                      onChange={() => setIsMusicPlaying(!isMusicPlaying)}
+                      aria-label="Toggle music"
+                    />
+                    <span className="music-toggle__slider"></span>
+                  </label>
+                </div>
+
+                {/* Volume Control */}
+                {isMusicPlaying && (
+                  <div className="volume-control">
+                    <label className="volume-control__label">Volume</label>
+                    <input 
+                      type="range" 
+                      min="0" 
+                      max="100" 
+                      defaultValue="70"
+                      className="volume-slider"
+                      aria-label="Volume control"
+                    />
+                  </div>
+                )}
+
+                {/* Info Text */}
+                <p className="music-modal__info">
+                  {isMusicPlaying 
+                    ? '🎵 Enjoy the gaming atmosphere' 
+                    : 'Turn on music for better experience'}
+                </p>
+              </div>
+            )}
+          </div>
+
           <a 
             className="header-action" 
             href="#download"

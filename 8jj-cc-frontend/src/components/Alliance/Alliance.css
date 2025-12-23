@@ -1,11 +1,30 @@
 /* =========================
    ALLIANCE MEMBER SECTION
+   Premium Interactive Design
    ========================= */
 
 #ContactUs {
   margin-top: 0px;
   margin-bottom: 0px;
   width: 100%;
+}
+
+/* Fade-in animation for section */
+.alliance-section {
+  animation: fadeSlideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* center container – SAME WIDTH AS HEADER */
@@ -18,24 +37,30 @@
 .alliance-card {
   position: relative;
   padding: 14px 14px 20px;
+  border-radius: var(--radius-lg);
 
   background-position: center bottom;
   background-size: cover;
   background-repeat: no-repeat;
 
   overflow: hidden;
+
+  /* Premium shadow */
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* dark overlay */
+/* dark overlay with gradient */
 .alliance-card::before {
   content: "";
   position: absolute;
   inset: 0;
 
   background: linear-gradient(to bottom,
-      #1b1b1a 0%,
-      #161616e6 55%,
-      #161616 100%);
+      rgba(27, 27, 26, 0.85) 0%,
+      rgba(22, 22, 22, 0.92) 55%,
+      rgba(22, 22, 22, 0.98) 100%);
 
   z-index: 0;
 }
@@ -47,19 +72,22 @@
   z-index: 1;
 }
 
-
+/* =========================
+   HEADER WITH GLOW EFFECT
+   ========================= */
 .alliance-header-container {
   background: linear-gradient(360deg, #262626 -19.48%, #505050 93.51%);
-  height: min(38.64px);
-  border-radius: min(1.067vw, 5.12px);
+  height: 38.64px;
+  border-radius: 8px;
   position: relative;
   width: 100%;
   overflow: hidden;
-  font-size: min(3.733vw, 17.92px);
-  font-weight: 600
+
+  /* Add subtle glow */
+  box-shadow: 0 0 20px rgba(255, 181, 0, 0.15);
 }
 
-.alliance-header-container:after {
+.alliance-header-container::after {
   content: " ";
   width: 100%;
   height: 100%;
@@ -67,72 +95,53 @@
   position: absolute;
   left: 0;
   top: 0;
-  border-radius: min(1.067vw, 5.12px)
+  border-radius: 8px;
+  animation: headerShimmer 3s ease-in-out infinite;
+}
+
+@keyframes headerShimmer {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
 }
 
 .alliance-header-container .alliance-head {
   display: flex;
   align-items: center;
-  padding-left: min(4vw, 19.2px);
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 14px;
+
   background: linear-gradient(360deg, #262626 -19.48%, #505050 93.51%);
-  height: min(37.36px);
-  border-radius: min(1.067vw, 5.12px);
+  height: 37.36px;
+  border-radius: 8px;
+
   position: absolute;
-  left: min(.267vw, 1.28px);
-  width: inherit;
+  left: 1.28px;
+  width: calc(100% - 2.56px);
   z-index: 1;
+
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, .08),
     0 4px 8px rgba(0, 0, 0, .45);
-  gap: 10px;
-  padding: 8px 14px;
 }
 
-
-/*
-
-.alliance-header-container{
-
-}
-
-
-.alliance-head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  padding: 8px 14px;
-  background: linear-gradient(360deg, #262626 -19.48%, #505050 93.51%);
-  border-radius: 10px;
-
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.08),
-    0 4px 8px rgba(0,0,0,.45);
-}
-
-
-.alliance-head::after{
-  content: " ";
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(16deg, #ff9900 -7.09%, rgba(102, 102, 102, 0) 20.81%);
-    position: absolute;
-    left: 0;
-    top: 0;
-    border-radius: 10px;
-}
-
-*/
-
-
-
-/* icon circle */
+/* =========================
+   ANIMATED ICON
+   ========================= */
 .alliance-icon {
   width: 18px;
   height: 18px;
   border-radius: 999px;
   border: 2px solid #ffb52a;
   position: relative;
+  flex-shrink: 0;
 }
 
 .alliance-icon::after {
@@ -141,6 +150,28 @@
   inset: 4px;
   border-radius: inherit;
   background: #ffb52a;
+  box-shadow: 0 0 8px #ffb52a;
+}
+
+/* Pulsing ring effect */
+.alliance-icon-pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 999px;
+  border: 2px solid #ffb52a;
+  animation: iconPulse 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes iconPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
 }
 
 /* title */
@@ -150,9 +181,34 @@
   letter-spacing: 0.12em;
   color: #ffffff;
   text-transform: uppercase;
+  flex: 1;
 }
 
-/* grid */
+/* Member count badge */
+.alliance-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+
+  background: linear-gradient(135deg, #ffb52a 0%, #ff8c00 100%);
+  border-radius: 12px;
+
+  font-size: 12px;
+  font-weight: 700;
+  color: #000;
+
+  box-shadow:
+    0 2px 8px rgba(255, 181, 42, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* =========================
+   GRID WITH STAGGER ANIMATION
+   ========================= */
 .alliance-grid {
   list-style: none;
   margin: 14px 0 0;
@@ -163,30 +219,52 @@
   gap: 16px 14px;
 }
 
-/* grid item */
+/* grid item with stagger */
 .alliance-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  /* Stagger animation */
+  animation: itemFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: calc(var(--stagger-index) * 0.05s);
+  opacity: 0;
 }
 
-/* icon tile */
+@keyframes itemFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================
+   PREMIUM TILE DESIGN
+   ========================= */
 .tile {
   width: 70px;
   height: 70px;
 
   display: grid;
   place-items: center;
+  position: relative;
 
-  background: #111827;
+  background: linear-gradient(145deg, #1a1f2e 0%, #0f1419 100%);
   border-radius: 13px;
   overflow: hidden;
 
   box-shadow:
     0 4px 12px rgba(0, 0, 0, .85),
-    0 0 0 1px rgba(15, 23, 42, .7);
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
-  transition: transform .15s ease, box-shadow .15s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
 }
 
 .tile img {
@@ -194,28 +272,260 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* hover lift */
-.tile:hover {
-  transform: translateY(-2px);
+/* Shimmer effect overlay */
+.tile-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.15) 50%,
+      transparent 70%);
+  transform: translateX(-100%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.tile:hover .tile-shimmer {
+  animation: shimmer 1s ease-in-out;
+}
+
+@keyframes shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* Glow effect on hover */
+.tile-glow {
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, #ffb52a, #ff8c00);
+  border-radius: 13px;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+  filter: blur(8px);
+}
+
+.tile:hover .tile-glow,
+.tile-active .tile-glow {
+  opacity: 0.6;
+}
+
+/* hover lift with rotation */
+.tile:hover,
+.tile-active {
+  transform: translateY(-4px) scale(1.05);
   box-shadow:
-    0 7px 18px rgba(0, 0, 0, .95),
-    0 0 0 1px rgba(248, 250, 252, .3);
+    0 12px 24px rgba(0, 0, 0, .95),
+    0 0 0 1px rgba(255, 181, 42, 0.4),
+    0 0 20px rgba(255, 181, 42, 0.2);
+}
+
+.tile:hover img,
+.tile-active img {
+  transform: scale(1.1);
+}
+
+/* Active press effect */
+.tile:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* =========================
+   COMING SOON TILE
+   ========================= */
+.tile-empty {
+  background: linear-gradient(145deg, #1a1f2e 0%, #0f1419 100%);
+  border: 2px dashed rgba(255, 181, 42, 0.3);
+  position: relative;
+  cursor: default;
+}
+
+.tile-empty:hover {
+  transform: none;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, .85),
+    0 0 0 1px rgba(255, 181, 42, 0.3);
+}
+
+.tile-plus {
+  left: 0.5px;
+  bottom: 3px;
+  font-size: 32px;
+  font-weight: 300;
+  color: rgba(255, 181, 42, 0.5);
+  z-index: 2;
+  position: relative;
+  animation: plusPulse 2s ease-in-out infinite;
+}
+
+@keyframes plusPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.tile-empty-text {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 7px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* Breathing rings effect */
+.tile-empty-rings {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.ring {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(255, 181, 42, 0.3);
+  border-radius: 50%;
+  animation: ringExpand 3s ease-in-out infinite;
+}
+
+.ring-2 {
+  animation-delay: 1s;
+}
+
+.ring-3 {
+  animation-delay: 2s;
+}
+
+@keyframes ringExpand {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+
+  100% {
+    width: 60px;
+    height: 60px;
+    opacity: 0;
+  }
 }
 
 /* label */
 .alliance-name {
-  margin-top: 6px;
+  margin-top: 8px;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.9);
   text-align: center;
+
+  transition: color 0.3s ease;
 }
 
-/* responsive */
+.alliance-item:hover .alliance-name {
+  color: #ffb52a;
+}
+
+/* =========================
+   FLOATING PARTICLES EFFECT
+   ========================= */
+.alliance-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, #ffb52a 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0;
+  animation: particleFloat 8s ease-in-out infinite;
+  animation-delay: calc(var(--particle-index) * 1.3s);
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.6;
+    transform: translate(0, 0) scale(1);
+  }
+
+  90% {
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translate(calc(var(--particle-index) * 30px - 90px),
+        -100px) scale(0);
+    opacity: 0;
+  }
+}
+
+.particle:nth-child(1) {
+  left: 10%;
+  top: 100%;
+}
+
+.particle:nth-child(2) {
+  left: 30%;
+  top: 100%;
+}
+
+.particle:nth-child(3) {
+  left: 50%;
+  top: 100%;
+}
+
+.particle:nth-child(4) {
+  left: 70%;
+  top: 100%;
+}
+
+.particle:nth-child(5) {
+  left: 85%;
+  top: 100%;
+}
+
+.particle:nth-child(6) {
+  left: 95%;
+  top: 100%;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+   ========================= */
 @media (max-width: 480px) {
   .alliance-grid {
     gap: 14px 10px;
@@ -228,5 +538,58 @@
 
   .alliance-name {
     font-size: 10px;
+  }
+
+  .alliance-title {
+    font-size: 13px;
+  }
+
+  .alliance-count {
+    min-width: 20px;
+    height: 20px;
+    font-size: 11px;
+  }
+}
+
+/* Tablets */
+@media (min-width: 768px) {
+  .alliance-card {
+    padding: 20px;
+  }
+
+  .alliance-grid {
+    gap: 20px 16px;
+  }
+
+  .tile {
+    width: 80px;
+    height: 80px;
+  }
+
+  .alliance-name {
+    font-size: 12px;
+  }
+}
+
+/* =========================
+   ACCESSIBILITY
+   ========================= */
+@media (prefers-reduced-motion: reduce) {
+
+  .alliance-section,
+  .alliance-item,
+  .tile,
+  .tile img,
+  .tile-shimmer,
+  .alliance-icon-pulse,
+  .ring,
+  .particle,
+  .tile-plus {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .alliance-header-container::after {
+    animation: none;
   }
 }

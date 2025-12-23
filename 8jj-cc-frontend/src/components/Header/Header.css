@@ -416,3 +416,321 @@
     transition: none;
   }
 }
+
+
+
+/* =========================
+   MUSIC MODAL
+   ========================= */
+
+/* Active state for music button */
+.header-action--active {
+  background: rgba(255, 184, 0, 0.1);
+  border-color: var(--color-primary);
+}
+
+.header-action--active:hover {
+  background: rgba(255, 184, 0, 0.15);
+}
+
+/* Music Modal Container */
+.music-modal {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  z-index: 10000;
+  
+  width: 280px;
+  
+  /* Premium dark background */
+  background: linear-gradient(
+    145deg,
+    #1a1e2e 0%,
+    #16192a 50%,
+    #1f2332 100%
+  );
+  
+  border: 1px solid rgba(255, 184, 0, 0.2);
+  border-radius: var(--radius-lg);
+  
+  /* Premium elevation */
+  box-shadow: var(--shadow-lg), 0 0 20px rgba(255, 184, 0, 0.1);
+  
+  padding: var(--space-lg);
+  
+  /* Smooth animation */
+  animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Modal Header */
+.music-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+.music-modal__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.music-modal__close {
+  width: 28px;
+  height: 28px;
+  
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 50%;
+  
+  color: var(--color-text-secondary);
+  font-size: 24px;
+  line-height: 1;
+  
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.music-modal__close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-primary);
+  transform: rotate(90deg);
+}
+
+/* Music Control */
+.music-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  padding: var(--space-md);
+  
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  
+  margin-bottom: var(--space-md);
+}
+
+.music-control__label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* Toggle Switch */
+.music-toggle {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+  cursor: pointer;
+}
+
+.music-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.music-toggle__slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 26px;
+  
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.music-toggle__slider:before {
+  content: '';
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  
+  background: white;
+  border-radius: 50%;
+  
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Checked State */
+.music-toggle input:checked + .music-toggle__slider {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-gradient-start),
+    var(--color-primary-gradient-end)
+  );
+  border-color: var(--color-primary);
+  box-shadow: 0 0 8px rgba(255, 184, 0, 0.3);
+}
+
+.music-toggle input:checked + .music-toggle__slider:before {
+  transform: translateX(24px);
+}
+
+/* Volume Control */
+.volume-control {
+  margin-bottom: var(--space-md);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    height: 0;
+  }
+  to {
+    opacity: 1;
+    height: auto;
+  }
+}
+
+.volume-control__label {
+  display: block;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Volume Slider */
+.volume-slider {
+  width: 100%;
+  height: 6px;
+  
+  -webkit-appearance: none;
+  appearance: none;
+  
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  outline: none;
+  
+  cursor: pointer;
+}
+
+/* Slider Track - Webkit */
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  
+  width: 18px;
+  height: 18px;
+  
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-gradient-start),
+    var(--color-primary-gradient-end)
+  );
+  
+  border-radius: 50%;
+  cursor: pointer;
+  
+  box-shadow: 0 2px 6px rgba(255, 184, 0, 0.4);
+  
+  transition: all 0.2s ease;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 3px 10px rgba(255, 184, 0, 0.6);
+}
+
+/* Slider Track - Firefox */
+.volume-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-gradient-start),
+    var(--color-primary-gradient-end)
+  );
+  
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  
+  box-shadow: 0 2px 6px rgba(255, 184, 0, 0.4);
+  
+  transition: all 0.2s ease;
+}
+
+.volume-slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Info Text */
+.music-modal__info {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  text-align: center;
+  margin: 0;
+  padding: var(--space-sm) 0;
+  line-height: 1.4;
+}
+
+/* =========================
+   RESPONSIVE ADJUSTMENTS
+   ========================= */
+
+@media (min-width: 768px) {
+  .music-modal {
+    width: 320px;
+    padding: var(--space-xl);
+  }
+}
+
+/* =========================
+   ACCESSIBILITY
+   ========================= */
+
+.music-toggle:focus-within .music-toggle__slider {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.volume-slider:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .music-modal,
+  .music-toggle__slider,
+  .music-toggle__slider:before,
+  .volume-slider::-webkit-slider-thumb {
+    animation: none;
+    transition: none;
+  }
+}

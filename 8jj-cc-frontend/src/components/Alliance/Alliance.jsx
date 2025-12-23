@@ -54,10 +54,14 @@ export default function Alliance() {
           style={{ backgroundImage: "url(/images/AllianceBg.jpg)" }}
         >
           {/* Header */}
-          <div className="alliance-head">
-            <span className="alliance-icon"></span>
-            <span className="alliance-title">ALLIANCE MEMBER</span>
+
+          <div className="alliance-header-container">
+            <div className="alliance-head">
+              <span className="alliance-icon"></span>
+              <span className="alliance-title">ALLIANCE MEMBER</span>
+            </div>
           </div>
+
 
           {/* Grid */}
           <ul className="alliance-grid">

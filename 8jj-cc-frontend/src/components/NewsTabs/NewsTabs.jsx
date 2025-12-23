@@ -7,7 +7,7 @@ export default function NewsTabs() {
   const [active, setActive] = useState("news");
 
   const filteredData = newsData.filter(
-    item => item.type === active
+    (item) => item.type === active
   );
 
   return (
@@ -39,7 +39,7 @@ export default function NewsTabs() {
         </button>
       </div>
 
-      {/* Content */}
+      {/* List */}
       <NewsList items={filteredData} />
     </section>
   );

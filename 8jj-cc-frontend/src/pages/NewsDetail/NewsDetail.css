@@ -1,0 +1,133 @@
+.news-detail {
+  padding: 14px;
+  padding-bottom: 90px; /* 🔴 IMPORTANT */
+  color: #eaeaea;
+  background: linear-gradient(180deg, #1b1b1b, #0f0f0f);
+  min-height: 100vh;
+}
+
+
+/* HEADER */
+.news-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #ffb84d;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.news-tag {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  background: #2b2b2b;
+  color: #ffb84d;
+}
+
+/* TITLE */
+.news-title {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.news-meta {
+  font-size: 11px;
+  color: #999;
+  margin-bottom: 10px;
+}
+
+/* IMAGE */
+.news-image img {
+  width: 100%;
+  border-radius: 14px;
+  margin-bottom: 12px;
+}
+
+/* CONTENT */
+.news-content p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.news-content ul {
+  margin-left: 16px;
+  margin-bottom: 12px;
+}
+
+.news-content li {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+/* =========================
+   NEWS SOCIAL SECTION
+   ========================= */
+
+.news-social {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  text-align: center;
+}
+
+.news-social-title {
+  font-size: 14px;
+  color: #cfcfcf;
+  margin-bottom: 10px;
+  opacity: 0.85;
+}
+
+.news-social-links {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.news-social-links a {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.news-social-links a:hover {
+  transform: translateY(-2px);
+  background: rgba(255,193,7,0.15);
+}
+
+.news-social-links img {
+  width: 18px;
+  height: 18px;
+}
+/* TITLE + META WRAPPER */
+.news-title-block {
+  margin-bottom: 12px;
+  display: flex-box;
+}
+
+/* TITLE */
+.news-title {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+/* META (DATE + AUTHOR) */
+.news-meta {
+  font-size: 11px;
+  color: #999;
+  position: ;
+}
+.news-detail-header {
+  margin-bottom: 14px; /* increased from 10px */
+}

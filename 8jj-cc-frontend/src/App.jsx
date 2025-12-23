@@ -4,6 +4,8 @@ import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import Events from "./pages/Events/Events";
 import Show from "./pages/Show/Show";
+import NewsDetail from "./pages/NewsDetail/NewsDetail";
+
 
 
 import { useState, useEffect } from "react";
@@ -27,6 +29,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/event" element={<Events />} />
           <Route path="/show" element={<Show />} />
+          <Route path="/news/:slug" element={<NewsDetail />} />
+
         </Routes>
         <Footer />
       

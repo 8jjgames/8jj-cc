@@ -1,39 +1,22 @@
+// src/components/Slider/Slider.jsx
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./Slider.css";
 
-import slide1 from "../../../public/images/slide1.jpg";
-import slide2 from "../../../public/images/slide2.jpg";
-import slide3 from "../../../public/images/slide3.jpg";
-
-
-const slides = [
-  {
-    id: 1,
-    image: slide1,
-    link: "/article/8jj-official-announcement",
-  },
-  {
-    id: 2,
-    image: slide2,
-    link: "/article/deepak-chahar-brand-ambassador",
-  },
-  {
-    id: 3,
-    image: slide3,
-    link: "/article/harbhajan-singh-brand-ambassador",
-  },
-];
-
-export default function Slider() {
+export default function Slider({ slides = [] }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
+    if (!slides.length) return;
+
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % slides.length);
     }, 3500);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
+
+  if (!slides.length) return null;
 
   return (
     <section className="home-slider">
@@ -42,9 +25,9 @@ export default function Slider() {
         style={{ transform: `translateX(-${index * 100}%)` }}
       >
         {slides.map((slide) => (
-          <a key={slide.id} href={slide.link} className="slide">
+          <Link key={slide.id} to={slide.link} className="slide">
             <img src={slide.image} alt="" />
-          </a>
+          </Link>
         ))}
       </div>
 

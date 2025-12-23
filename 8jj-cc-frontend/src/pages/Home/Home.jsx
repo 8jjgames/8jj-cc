@@ -2,26 +2,26 @@ import Alliance from "../../components/Alliance/Alliance";
 import NewsTabs from "../../components/NewsTabs/NewsTabs";
 import HeroVideo from "../../components/HeroVideo/HeroVideo";
 import Slider from "../../components/Slider/Slider";
-import Slide1 from "../../assets/slide1.jpg";
-import Slide2 from "../../assets/slide2.jpg";
-import Slide3 from "../../assets/slide3.jpg";
+
+import slide1 from "../../assets/slide1.jpg";
+import slide2 from "../../assets/slide2.jpg";
+import slide3 from "../../assets/slide3.jpg";
 
 export default function Home() {
-
   const slides = [
     {
       id: 1,
-      image: Slide1,
+      image: slide1,
       link: "/news/8jj-official-announcement",
     },
     {
       id: 2,
-      image: Slide2,
+      image: slide2,
       link: "/news/deepak-chahar-brand-ambassador",
     },
     {
       id: 3,
-      image: Slide3,
+      image: slide3,
       link: "/news/harbhajan-singh-brand-ambassador",
     },
   ];
@@ -30,7 +30,7 @@ export default function Home() {
     <>
       <HeroVideo />
       <Alliance />
-      <Slider slides={slides} /> 
+      <Slider slides={slides} />
       <NewsTabs />
     </>
   );

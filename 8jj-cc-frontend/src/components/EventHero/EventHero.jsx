@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import "./EventHero.css";
+import slide1 from "../../assets/event-hero1.jpg";
+import slide2 from "../../assets/event-hero2.jpg";
+import slide3 from "../../assets/event-hero-poster.jpg";
+import slide4 from "../../assets/event-hero.jpg";
+
 
 const slides = [
-  "../../../public/images/event-hero1.jpg",
-  "../../../public/images/event-hero2.jpg",
-  "../../../public/images/event-hero-poster.jpg",
-  "../../../public/images/event-hero.jpg",
+  slide1,
+  slide2,
+  slide3,
+  slide4,
 ];
 
 export default function EventHero() {

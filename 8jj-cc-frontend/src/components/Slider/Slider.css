@@ -53,3 +53,16 @@
 .slider-dots .dot.active {
   background: #ffb23a;
 }
+.home-slider {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+}

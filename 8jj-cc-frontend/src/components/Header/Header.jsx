@@ -150,7 +150,7 @@ export default function Header() {
                 {/* Info Text */}
                 <p className="music-modal__info">
                   {isMusicPlaying 
-                    ? '🎵 Enjoy the gaming atmosphere' 
+                    ? '🎵 Enjoy the atmosphere' 
                     : 'Turn on music for better experience'}
                 </p>
               </div>

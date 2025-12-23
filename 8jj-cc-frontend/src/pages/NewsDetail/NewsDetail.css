@@ -126,7 +126,7 @@
 .news-meta {
   font-size: 11px;
   color: #999;
-  position: ;
+  position: sticky;
 }
 .news-detail-header {
   margin-bottom: 14px; /* increased from 10px */
